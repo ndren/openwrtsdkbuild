@@ -34,10 +34,7 @@ docker-build:
     - export arch="x86"
     - export subarch="64"
     - export relver="21.02.0-rc4"
-    - docker build --output type=local,dest=out --pull -t "$CI_REGISTRY_IMAGE${tag}" --build-arg giturl="$giturl" --build-arg packname="$packname" --build-arg arch="$arch" --build-arg subarch="$subarch" --build-arg relver="$relver" .
-    - ls -lha
-    - find ./
-  #  - docker push "$CI_REGISTRY_IMAGE${tag}"
+    - docker build --output type=local,dest=artifacts --pull -t "$CI_REGISTRY_IMAGE${tag}" --build-arg giturl="$giturl" --build-arg packname="$packname" --build-arg arch="$arch" --build-arg subarch="$subarch" --build-arg relver="$relver" .
   # Run this job in a branch where a Dockerfile exists
   rules:
     - if: $CI_COMMIT_BRANCH
@@ -45,6 +42,4 @@ docker-build:
         - Dockerfile
   artifacts:
     paths:
-      - binaries/
-    exclude:
-      - binaries/temp/**/*
+      - artifacts/
