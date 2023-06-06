@@ -14,4 +14,4 @@ RUN make package/$packname/compile V=s
 RUN make package/index V=scripts
 
 FROM scratch AS export-stage
-COPY --from=build-stage /home/openwrt/sdk /
+COPY --from=build-stage /home/openwrt/sdk/bin /
