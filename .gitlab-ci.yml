@@ -29,7 +29,12 @@ docker-build:
         tag=":$CI_COMMIT_REF_SLUG"
         echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
       fi
-    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+    - export giturl="https://github.com/zoobab/openwrt_helloworld"
+    - export packname="helloworld"
+    - export arch="x86"
+    - export subarch="64"
+    - expprt relver="21.02.0-rc4"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" --build-arg giturl="$giturl" --build-arg packname="$packname" --build-arg arch="$arch" --build-arg subarch="$subarch" --build-arg relver="$relver" .
     - docker push "$CI_REGISTRY_IMAGE${tag}"
   # Run this job in a branch where a Dockerfile exists
   rules:
