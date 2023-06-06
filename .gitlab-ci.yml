@@ -33,7 +33,7 @@ docker-build:
     - export packname="helloworld"
     - export arch="x86"
     - export subarch="64"
-    - expprt relver="21.02.0-rc4"
+    - export relver="21.02.0-rc4"
     - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" --build-arg giturl="$giturl" --build-arg packname="$packname" --build-arg arch="$arch" --build-arg subarch="$subarch" --build-arg relver="$relver" .
     - docker push "$CI_REGISTRY_IMAGE${tag}"
   # Run this job in a branch where a Dockerfile exists
