@@ -25,4 +25,5 @@ $ docker build --output type=local,dest=artifacts --build-arg giturl="$giturl" -
 * Helloworld in CPP for OpenWRT: https://github.com/zoobab/openwrt_helloworld
 * OpenWRT SDK in a docker image: https://github.com/zoobab/openwrtsdk
 * List of available tags https://hub.docker.com/r/zoobab/openwrtsdk/tags
+* Freifunk blog: GSoC2023: Documenting the OpenWrt compilation process to set up a PPA: https://blog.freifunk.net/2023/05/13/gsoc-23-documenting-the-openwrt-compilation-process-to-set-up-a-ppa/
 
