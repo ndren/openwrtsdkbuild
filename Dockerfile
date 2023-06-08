@@ -1,6 +1,6 @@
 ARG sdk_image
 
-FROM sdk_image AS build-stage
+FROM $sdk_image AS build-stage
 ARG giturl
 ARG packname
 RUN [ -z "$giturl" ] && echo 'giturl is required' && exit 1 || true
