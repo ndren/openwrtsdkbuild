@@ -22,6 +22,7 @@ $ docker build --output type=local,dest=artifacts --build-arg giturl="$giturl" -
 * A drop-down list to choose your SDK/URL/packagename in Gitlab-CI parameters
 * Add an architecture diagram
 * Try self-hosted gitlab
+* Implement a test stage in the pipeline to add the URL, install the package and run it
 
 ## Links
 
