@@ -8,7 +8,7 @@ docker-build:
     - export giturl="https://github.com/zoobab/openwrt_helloworld"
     - export packname="helloworld"
     - export sdk_image="zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
-    - docker build --output type=local,dest=artifacts --build-arg giturl="$giturl" --build-arg packname="$packname" --build-arg sdk_image="$arch" .
+    - docker build --output type=local,dest=artifacts --build-arg giturl="$giturl" --build-arg packname="$packname" --build-arg sdk_image="$sdk_image" .
   artifacts:
     paths:
       - artifacts/
