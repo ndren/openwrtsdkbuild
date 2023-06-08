@@ -11,11 +11,11 @@ This is an example of an helloworld project written in C++ (https://github.com/z
 ```
 $ ./build.sh
 Usage: $0 giturl package_name sdk_image
-Example: $0 https://github.com/zoobab/openwrt_helloworld helloworld sdk_image
+Example: $0 https://github.com/zoobab/openwrt_helloworld helloworld zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53
 ```
 
 Where:
 
 1. `https://github.com/zoobab/openwrt_helloworld` is the URL of the GIT repo containing the OpenWRT packages
 2. `helloworld` is the directory name containing the OpenWRT Makefiles
-3. `sdk_image` is the sdk_image being used
+3. `zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53` is the sdk_image being used
