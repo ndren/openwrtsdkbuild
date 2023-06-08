@@ -19,7 +19,7 @@ $ docker build --output type=local,dest=artifacts --build-arg giturl="$giturl" -
 
 * Publish artifacts in a package repository (maybe in debian format as ipk is similar?)
 * Rebuild the SDKs with more recent versions of OpenWRT
-* A drop-down list in Gitlab-CI parameters
+* A drop-down list to choose your SDK/URL/packagename in Gitlab-CI parameters
 
 ## Links
 
