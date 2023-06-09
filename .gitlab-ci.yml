@@ -17,5 +17,8 @@ variables:
   DEPLOY_CREDENTIALS:
     description: "The deployment credentials."
   DEPLOY_ENVIRONMENT:
-    description: "Select the deployment target. Valid options are: 'canary', 'staging', 'production', or a stable branch of your choice."
-    value: "canary"
+    description: "Select environment"
+    value:
+      - "dev"
+      - "test"
+      - "prod"
