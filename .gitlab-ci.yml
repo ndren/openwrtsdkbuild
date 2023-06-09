@@ -5,10 +5,10 @@ docker-build:
     - docker:dind
   script:
     - |
-    - export giturl="https://github.com/zoobab/openwrt_helloworld"
-    - export packname="helloworld"
-    - export sdk_image="zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
-    - docker build --output type=local,dest=artifacts --build-arg giturl="$giturl" --build-arg packname="$packname" --build-arg sdk_image="$sdk_image" .
+#    - export giturl="https://github.com/zoobab/openwrt_helloworld"
+#    - export packname="helloworld"
+#    - export sdk_image="zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
+    - docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
   artifacts:
     paths:
       - artifacts/
