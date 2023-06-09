@@ -14,9 +14,12 @@ docker-build:
       - artifacts/
 
 variables:
+  PACK_NAME:
+    desrcription: "Name of the package directory inside the git repo"
+    value: "helloworld"
   GIT_URL:
     description: "GIT URL"
-    value: ""
+    value: "https://github.com/zoobab/openwrt_helloworld"
   SDK_IMAGE:
     description: "SDK Docker Image"
     value: "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
