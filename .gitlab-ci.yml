@@ -1,6 +1,14 @@
 docker-build:
   image: docker:latest
   stage: build
+  variables:
+    DEPLOY_ENVIRONMENT:
+      value: "dev"
+      options:
+        - "dev"
+        - "qa"
+        - "prod"
+    description: "The deployment target. Set to 'staging' by default."
   services:
     - docker:dind
   script:
