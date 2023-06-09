@@ -14,8 +14,6 @@ docker-build:
       - artifacts/
 
 variables:
-  DEPLOY_CREDENTIALS:
-    description: "The deployment credentials."
   DEPLOY_ENVIRONMENT:
     description: "Select environment"
     value:
