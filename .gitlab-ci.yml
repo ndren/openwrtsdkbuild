@@ -14,13 +14,9 @@ docker-build:
       - artifacts/
 
 variables:
-  DEPLOY_ENVIRONMENT:
-    description: "Deploy in environment"
-    value: "dev"
-    options: 
-      - "dev"
-      - "test"
-      - "prod"
+  GIT_URL:
+    description: "GIT URL"
+    value: ""
   SDK_IMAGE:
     description: "SDK Docker Image"
     value: "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
