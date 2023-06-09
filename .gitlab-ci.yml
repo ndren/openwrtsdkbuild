@@ -15,8 +15,9 @@ docker-build:
 
 variables:
   DEPLOY_ENVIRONMENT:
-    description: "Select environment"
-    value:
+    description: "Deploy in environment"
+    value: "dev"
+    options: 
       - "dev"
       - "test"
       - "prod"
