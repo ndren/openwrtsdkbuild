@@ -15,7 +15,7 @@ docker-build:
 
 variables:
   PACK_NAME:
-    desrcription: "Name of the package directory inside the git repo"
+    description: "Name of the package directory inside the git repo"
     value: "helloworld"
   GIT_URL:
     description: "GIT URL"
