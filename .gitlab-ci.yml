@@ -26,4 +26,5 @@ variables:
     value: "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
     options: 
       - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
-      - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa58"
+      - "zoobab/openwrtsdk:21.02.0-rc4-imx6-generic"
+      - "zoobab/openwrtsdk:21.02.0-rc4-bcm27xx-bcm2708"
