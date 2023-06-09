@@ -21,3 +21,9 @@ variables:
       - "dev"
       - "test"
       - "prod"
+  SDK_IMAGE:
+    description: "SDK Docker Image"
+    value: "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
+    options: 
+      - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
+      - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa58"
