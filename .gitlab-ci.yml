@@ -12,11 +12,9 @@ docker-build:
     - apk update
     - apk add git
     - git clone "$UPLOAD_URL" upload
-    - find && echo found
-    - find /
-    - cd upload && git remote set-url origin "https://gitlab-ci-token:${CI_TAG_UPLOAD_TOKEN}@${UPLOAD_URL}"
     - cp -r artifacts/* upload
-    - cd upload && git add . && git commit -m `date`
+    - cd upload && git remote set-url origin "https://gitlab-ci-token:${CI_TAG_UPLOAD_TOKEN}@${UPLOAD_URL}"
+    - git add . && git commit -m `date`
   artifacts:
     paths:
       - artifacts/
