@@ -23,6 +23,7 @@ docker-build:
     - git config --global user.name "${GITLAB_USER_NAME}"
     - git add . && git commit -m "$(date)"
     - git remote set-url --push origin "${UPLOAD_PATH}"
+    - git push
 
   artifacts:
     paths:
