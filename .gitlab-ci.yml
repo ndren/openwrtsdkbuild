@@ -22,8 +22,9 @@ variables:
     value: "https://github.com/zoobab/openwrt_helloworld"
   SDK_IMAGE:
     description: "SDK Docker Image"
-    value: "zoobab/openwrtsdk:21.02.0-rc4-x86_64"
+    value: "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
     options: 
       - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
       - "zoobab/openwrtsdk:21.02.0-rc4-imx6-generic"
       - "zoobab/openwrtsdk:21.02.0-rc4-bcm27xx-bcm2708"
+      - "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
