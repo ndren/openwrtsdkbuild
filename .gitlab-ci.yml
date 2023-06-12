@@ -11,13 +11,13 @@ docker-build:
     - docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
     - apk update
     - apk add git
-    - git clone "$UPLOAD_URL" upload
+    - git clone "https://${UPLOAD_PATH}" upload
     - cp -r artifacts/* upload
-    - cd upload && git remote set-url origin "https://gitlab-ci-token:${CI_TAG_UPLOAD_TOKEN}@${UPLOAD_URL}"
+    - cd upload
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - git config --global user.name "${GITLAB_USER_NAME}"
     - git add . && git commit -m "$(date)"
-    - git push
+    - git push "https://${GITLAB_USER_NAME}:${CI_TAG_UPLOAD_TOKEN}@${UPLOAD_PATH}"
   artifacts:
     paths:
       - artifacts/
@@ -29,9 +29,9 @@ variables:
   GIT_URL:
     description: "GIT URL"
     value: "https://github.com/zoobab/openwrt_helloworld"
-  UPLOAD_URL:
+  UPLOAD_PATH:
     description: "The GitLab repository to push to. Please edit this to your username, it won't be able to upload artifacts outside otherwise!"
-    value: "https://gitlab.com/ndren/openwrtrepo"
+    value: "gitlab.com/ndren/openwrtrepo"
   SDK_IMAGE:
     description: "SDK Docker Image"
     value: "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
