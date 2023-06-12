@@ -17,7 +17,7 @@ docker-build:
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - git config --global user.name "${GITLAB_USER_NAME}"
     - git add . && git commit -m "$(date)"
-    - git push "https://${GITLAB_USER_NAME}:${CI_TAG_UPLOAD_TOKEN}@${UPLOAD_PATH}"
+    - git push "https://gitlab-ci-token:$($CI_TAG_UPLOAD_TOKEN)@$UPLOAD_PATH"
   artifacts:
     paths:
       - artifacts/
