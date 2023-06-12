@@ -10,6 +10,7 @@ docker-build:
 #    - export sdk_image="zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
     - docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
     - git clone "$UPLOAD_URL" upload
+    - sudo apt install git
     - cd upload && git remote set-url origin "https://gitlab-ci-token:${CI_TAG_UPLOAD_TOKEN}@${UPLOAD_URL}"
     - cp -r artifacts/* upload
     - cd upload && git add . && git commit -m `date`

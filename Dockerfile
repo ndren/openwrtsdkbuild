@@ -6,8 +6,6 @@ ARG PACK_NAME
 RUN [ -z "$GIT_URL" ] && echo 'GIT_URL is required' && exit 1 || true
 RUN [ -z "$PACK_NAME" ] && echo 'PACK_NAME is required' && exit 1 || true
 RUN echo "src-git myrepo $GIT_URL" >> feeds.conf.default
-RUN sudo apk update
-RUN sudo apk add git
 RUN ls -lha
 RUN rm -Rfv tmp/
 RUN ./scripts/feeds update myrepo
