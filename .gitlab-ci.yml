@@ -13,7 +13,7 @@ docker-build:
     - apk add git
     - apk add openssh
     - eval $(ssh-agent)
-    - echo ${CI_SECURE_SHELL} > /tmp/sshkey
+    - echo ${CI_SECURE_SHELL} | tr -d '\r' > /tmp/sshkey
     - chmod 600 /tmp/sshkey
     - ssh-add /tmp/sshkey
     - git clone "https://${UPLOAD_PATH}" upload
