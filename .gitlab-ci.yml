@@ -15,7 +15,7 @@ docker-build:
     - eval "$(ssh-agent)"
     - echo "${CI_SECURE_SHELL}" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     - git clone "${UPLOAD_PATH}" upload
     - cp -r artifacts/* upload
     - cd upload
