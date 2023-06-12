@@ -12,11 +12,9 @@ docker-build:
     - apk update
     - apk add git
     - apk add openssh
-    - eval $(ssh-agent)
-    - echo ${CI_SECURE_SHELL} | tr -d '\r' > /tmp/sshkey
-    - chmod 600 /tmp/sshkey
-    - ssh-add /tmp/sshkey
-    - git clone "https://${UPLOAD_PATH}" upload
+    - eval "$(ssh-agent)"
+    - echo "${CI_SECURE_SHELL}" | tr -d '\r' | ssh-add -
+    - git clone "${UPLOAD_PATH}" upload
     - cp -r artifacts/* upload
     - cd upload
     - git config --global user.email "${GITLAB_USER_EMAIL}"
