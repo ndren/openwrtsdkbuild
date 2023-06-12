@@ -14,6 +14,8 @@ docker-build:
     - git clone "$UPLOAD_URL" upload
     - cp -r artifacts/* upload
     - cd upload && git remote set-url origin "https://gitlab-ci-token:${CI_TAG_UPLOAD_TOKEN}@${UPLOAD_URL}"
+    - git config --global user.email "${GITLAB_USER_EMAIL}"
+    - git config --global user.name "${GITLAB_USER_NAME}"
     - git add . && git commit -m "${date}"
   artifacts:
     paths:
