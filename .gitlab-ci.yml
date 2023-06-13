@@ -9,6 +9,8 @@ docker-build:
 #    - export packname="helloworld"
 #    - export sdk_image="zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
     - docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
+    - apk update
+    - apk add curl
     - cd "artifacts/${UPLOAD_SOURCE}"
     - for file in *; do curl --user "usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}" --upload-file $file "${UPLOAD_REPO}/${file}"; done
 
