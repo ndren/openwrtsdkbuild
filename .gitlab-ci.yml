@@ -9,21 +9,9 @@ docker-build:
 #    - export packname="helloworld"
 #    - export sdk_image="zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
     - docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
-    - apk update
-    - apk add git
-    - apk add openssh
-    - eval "$(ssh-agent)"
-    - echo "${CI_SECURE_SHELL}" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - git clone "${UPLOAD_PATH}" upload
-    - cp -r artifacts/* upload
-    - cd upload
-    - git config --global user.email "${GITLAB_USER_EMAIL}"
-    - git config --global user.name "${GITLAB_USER_NAME}"
-    - git add . && git commit -m "$(date)"
-    - git remote set-url --push origin "${UPLOAD_PATH}"
-    - git push
+    - pushd "artifacts/${UPLOAD_SOURCE}"
+    - for file in *; do curl --user "usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}" --upload-file $file "${UPLOAD_REPO}/${file}"; done
+    - popd
 
   artifacts:
     paths:
@@ -36,13 +24,16 @@ variables:
   GIT_URL:
     description: "GIT URL"
     value: "https://github.com/zoobab/openwrt_helloworld"
-  UPLOAD_PATH:
-    description: "The GitLab repository to push to. Please edit this to your username, it won't be able to upload artifacts outside otherwise!"
-    value: "git@gitlab.com:ndren/openwrtrepo.git"
+  UPLOAD_SOURCE:
+    description: "The source folder to upload artifacts from"
+    value: "packages/x86_64/"
+  UPLOAD_REPO:
+    description: "The GitLab generic package repo to push to"
+    value: "https://gitlab.com/api/v4/projects/${GITLAB_USER_NAME}%2Fopenwrtsdkbuild/packages/generic/x86_64/0.0.1/"
   SDK_IMAGE:
     description: "SDK Docker Image"
     value: "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
-    options: 
+    options:
       - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
       - "zoobab/openwrtsdk:21.02.0-rc4-imx6-generic"
       - "zoobab/openwrtsdk:21.02.0-rc4-bcm27xx-bcm2708"
