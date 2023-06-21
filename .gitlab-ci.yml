@@ -39,7 +39,8 @@ test-install:
     - chroot . /bin/sh -c "echo 'src/gz myrepo http://usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}@${UPLOAD_REPO}' >> /etc/opkg/customfeeds.conf"
     - chroot . /bin/sh -c "opkg update"
     - chroot . /bin/sh -c "opkg install '${PACK_NAME}'"
-
+    # Optionally run PACK_NAME
+    - chroot . /bin/sh -c "'${PACK_NAME}'"
 
 variables:
   PACK_NAME:
