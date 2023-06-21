@@ -34,11 +34,7 @@ test-install:
     - chroot . /bin/sh -c "sed -i '/check_signature/s/^/#/g' /etc/opkg.conf"
     - chroot . /bin/sh -c "echo 'src/gz myrepo http://usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}@${UPLOAD_REPO}' >> /etc/opkg/customfeeds.conf"
     - chroot . /bin/sh -c "mkdir -p /var/lock/ && touch /var/lock/opkg.lock"
-    - chroot . /bin/sh -c "echo 'option ipv6 0' >> /etc/config/network"
-    - chroot . /bin/sh -c "wget -4 http://neverssl.com/"
-    - chroot . /bin/sh -c "wget http://neverssl.com/"
-    - cp /bin/curl ./bin/curl
-    - chroot . /bin/sh -c "curl -vv http://gitlab.com"
+    - cp /etc/resolv.conf ./etc/resolv.conf
     - chroot . /bin/sh -c "opkg update"
     - chroot . /bin/sh -c "opkg install '${PACK_NAME}'"
 
