@@ -51,27 +51,33 @@ variables:
     value: "https://github.com/zoobab/openwrt_helloworld"
   UPLOAD_SOURCE:
     description: "The source folder to upload artifacts from"
-    value: "packages/x86_64/myrepo/"
+    value: "packages/arm64-virt/myrepo/"
   UPLOAD_REPO:
     description: "The GitLab generic package repo to push to"
-    value: "gitlab.com/api/v4/projects/${GITLAB_USER_NAME}%2Fopenwrtsdkbuild/packages/generic/x86_64/0.0.2/"
+    value: "gitlab.com/api/v4/projects/${GITLAB_USER_NAME}%2Fopenwrtsdkbuild/packages/generic/arm64_virt/0.0.2/"
   SDK_IMAGE:
     description: "SDK Docker Image"
-    value: "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
+    value: "zoobab/openwrtsdk:21.02.0-rc4-arm64-virt"
     options:
       - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
       - "zoobab/openwrtsdk:21.02.0-rc4-imx6-generic"
       - "zoobab/openwrtsdk:21.02.0-rc4-bcm27xx-bcm2708"
+      - "zoobab/openwrtsdk:21.02.0-rc4-arm64-virt"
       - "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
-  QEMU_ARCH:
-    description: "Architecture specification, in qemu format"
-    value: "x86_64"
   DPKG_ARCH:
    description: "Architecture specification, in debian format"
-   value: "amd64"
+   value: "arm64"
+   options:
+     - "amd64"
+     - "arm64"
   ARCH:
     description: "Architecture specification, in openwrt format"
-    value: "x86"
+    value: "arm64"
+    options:
+      - "x86"
+      - "arm64"
   SUBARCH:
     description: "Subarchitecture specification, in openwrt format"
-    value: "64"
+    value: "virt"
+      - "64"
+      - "virt"
