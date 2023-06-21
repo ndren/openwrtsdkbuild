@@ -51,7 +51,10 @@ variables:
     value: "https://github.com/zoobab/openwrt_helloworld"
   UPLOAD_SOURCE:
     description: "The source folder to upload artifacts from"
-    value: "packages/armvirt-64/myrepo/"
+    value: "packages/arm64/myrepo/"
+    options:
+      - "packages/arm64/myrepo/"
+      - "packages/x86_64/myrepo/"
   UPLOAD_REPO:
     description: "The GitLab generic package repo to push to"
     value: "gitlab.com/api/v4/projects/${GITLAB_USER_NAME}%2Fopenwrtsdkbuild/packages/generic/armvirt_64/0.0.2/"
