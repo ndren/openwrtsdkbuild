@@ -31,7 +31,7 @@ test-install:
     - curl -L "https://downloads.openwrt.org/releases/22.03.5/targets/${ARCH}/${SUBARCH}/openwrt-22.03.5-${ARCH}-${SUBARCH}-rootfs.tar.gz" -o rootfs.tar.gz
     - tar -xpf rootfs.tar.gz
     - chroot . /bin/sh -c "sed -i 's/https/http/g' /etc/opkg/distfeeds.conf"
-    - chroot . /bin/sh -c "sed -i '/check_signature/s/^/#/g' /etc/opkg/opkg.conf"
+    - chroot . /bin/sh -c "sed -i '/check_signature/s/^/#/g' /etc/opkg.conf"
     - chroot . /bin/sh -c "echo 'src/gz myrepo http://usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}@${UPLOAD_REPO}' >> /etc/opkg/customfeeds.conf"
     - opkg update
     - opkg install "${PACK_NAME}"
