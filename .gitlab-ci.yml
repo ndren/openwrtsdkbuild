@@ -59,7 +59,7 @@ variables:
       - "packages/x86_64/myrepo/"
   UPLOAD_REPO:
     description: "The GitLab generic package repo to push to"
-    value: "gitlab.com/api/v4/projects/${GITLAB_USER_NAME}%2Fopenwrtsdkbuild/packages/generic/armvirt_64/0.0.2/"
+    value: "gitlab.com/api/v4/projects/${GITLAB_USER_NAME}%2Fopenwrtsdkbuild/packages/generic/armvirt_64/0.0.3/"
   SDK_IMAGE:
     description: "SDK Docker Image"
     value: "zoobab/openwrtsdk:21.02.0-rc4-armvirt-64"
