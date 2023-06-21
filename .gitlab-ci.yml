@@ -27,7 +27,7 @@ test-install:
   script:
     - dpkg --add-architecture "${DPKG_ARCH}"
     - apt update
-    - apt install curl binfmt-support qemu-user-static "libc6:${DPKG_ARCH}"
+    - apt install -y curl binfmt-support qemu-user-static "libc6:${DPKG_ARCH}"
     - curl -L "https://downloads.openwrt.org/releases/22.03.5/targets/${ARCH}/${SUBARCH}/openwrt-22.03.5-${ARCH}-${SUBARCH}-rootfs.tar.gz" -o rootfs.tar.gz
     - tar -xpf rootfs.tar.gz
     - chroot . /bin/sh -c "sed -i 's/https/http/g' /etc/opkg/distfeeds.conf"
