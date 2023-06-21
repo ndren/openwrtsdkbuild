@@ -30,7 +30,7 @@ test-install:
     - apt update
     - apt install -y curl libarchive-tools binfmt-support qemu-user-static "libc6:${DPKG_ARCH}"
     - curl -L --fail "https://downloads.openwrt.org/releases/22.03.5/targets/${ARCH}/${SUBARCH}/openwrt-22.03.5-${ARCH}-${SUBARCH}-rootfs.tar.gz" -o rootfs.tar.gz\
-     || curl -L --fail "https://downloads.openwrt.org/releases/22.03.5/targets/${ARCH}/${SUBARCH}/openwrt-22.03.5-${ARCH}-${SUBARCH}-cpio.tar.gz" -o rootfs.cpio.gz
+     || curl -L --fail "https://downloads.openwrt.org/releases/22.03.5/targets/${ARCH}/${SUBARCH}/openwrt-22.03.5-${ARCH}-${SUBARCH}-rootfs.cpio.gz" -o rootfs.cpio.gz
     - bsdtar -xpf rootfs.tar.gz || bsdtar -xpf rootfs.cpio.gz
     - chroot . /bin/sh -c "sed -i 's/https/http/g' /etc/opkg/distfeeds.conf"
     - chroot . /bin/sh -c "sed -i '/check_signature/s/^/#/g' /etc/opkg.conf"
