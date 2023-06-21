@@ -79,5 +79,6 @@ variables:
   SUBARCH:
     description: "Subarchitecture specification, in openwrt format"
     value: "virt"
+    options:
       - "64"
       - "virt"
