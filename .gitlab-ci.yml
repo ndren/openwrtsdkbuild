@@ -52,7 +52,7 @@ variables:
     value: "gitlab.com/api/v4/projects/${GITLAB_USER_NAME}%2Fopenwrtsdkbuild/packages/generic/armvirt_64/0.0.3/"
   SDK_IMAGE:
     description: "SDK Docker Image"
-    value: "zoobab/openwrtsdk:21.02.0-rc4-armvirt-64"
+    value: "openwrt/sdk:armvirt-64-23.05.0-rc1"
     options:
       - "zoobab/openwrtsdk:21.02.0-rc4-sunxi-cortexa53"
       - "zoobab/openwrtsdk:21.02.0-rc4-imx6-generic"
