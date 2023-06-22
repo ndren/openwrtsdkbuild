@@ -28,7 +28,7 @@ test-install:
   services:
     - docker:dind
   script:
-    - docker run --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" "${cat ci-test-install.sh}"
+    - docker run --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" "$(cat ci-test-install.sh)"
 
 variables:
   PACK_NAME:
@@ -55,6 +55,23 @@ variables:
       - "zoobab/openwrtsdk:21.02.0-rc4-bcm27xx-bcm2708"
       - "zoobab/openwrtsdk:21.02.0-rc4-armvirt-64"
       - "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
+  DOCKER_PLATFORM:
+    description: "The platform that docker should emulate at the install test step"
+    value: "linux/arm64"
+    options:
+      - "linux/amd64"
+      - "linux/arm64"
+  OPENWRT_ROOTFS_TAG:
+    description: "The rootfs tag from openwrt: https://github.com/openwrt/docker#rootfs-tags"
+    value: "armvirt/64"
+    options:
+      - "x86/64"
+      - "x86/generic"
+      - "x86/geode"
+      - "armvirt/32"
+      - "armvirt/64"
+      - "malta/be"
+      - "mvebu/cortexa9"
   DPKG_ARCH:
    description: "Architecture specification, in debian format"
    value: "arm64"
