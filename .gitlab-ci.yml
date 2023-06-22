@@ -60,13 +60,14 @@ variables:
       - "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
   DOCKER_PLATFORM:
     description: "The platform that docker should emulate at the install test step"
-    value: "linux/aarch64_generic"
+    value: "linux/aarch64_cortex-a53"
     options:
       - "linux/amd64"
       - "linux/aarch64_generic"
+      - "linux/aarch64_cortex-a53"
   OPENWRT_ROOTFS_TAG:
     description: "The rootfs tag from openwrt: https://github.com/openwrt/docker#rootfs-tags, https://hub.docker.com/r/openwrt/rootfs/tags"
-    value: "armvirt-64-SNAPSHOT"
+    value: "aarch64_cortex-a53-SNAPSHOT"
     options:
       - "x86_64-SNAPSHOT"
       - "i386_pentium4-SNAPSHOT"
