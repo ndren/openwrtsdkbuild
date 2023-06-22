@@ -5,6 +5,8 @@ mkdir -p /var/lock/ && touch /var/lock/opkg.lock
 opkg update
 opkg install wget-ssl
 
+opkg print-architecture
+
 echo "src/gz myrepo http://usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}@${UPLOAD_REPO}" >> /etc/opkg/customfeeds.conf
 opkg update
 opkg install "${PACK_NAME}"

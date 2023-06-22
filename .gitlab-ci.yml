@@ -65,7 +65,7 @@ variables:
       - "linux/amd64"
       - "linux/aarch64_generic"
   OPENWRT_ROOTFS_TAG:
-    description: "The rootfs tag from openwrt: https://github.com/openwrt/docker#rootfs-tags"
+    description: "The rootfs tag from openwrt: https://github.com/openwrt/docker#rootfs-tags, https://hub.docker.com/r/openwrt/rootfs/tags"
     value: "armvirt-64-SNAPSHOT"
     options:
       - "x86_64-SNAPSHOT"
