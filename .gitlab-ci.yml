@@ -30,7 +30,7 @@ test-install:
   script:
     - apk update
     - apk add curl
-    - docker run --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" "$(curl https://gitlab.com/${GITLAB_USER_NAME}/openwrtsdkbuild/-/raw/master/ci-test-install.sh)"
+    - docker run "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" "$(curl https://gitlab.com/${GITLAB_USER_NAME}/openwrtsdkbuild/-/raw/master/ci-test-install.sh)"
 
 variables:
   PACK_NAME:
