@@ -65,15 +65,15 @@ variables:
       - "linux/arm64"
   OPENWRT_ROOTFS_TAG:
     description: "The rootfs tag from openwrt: https://github.com/openwrt/docker#rootfs-tags"
-    value: "armvirt/64"
+    value: "aarch64_cortex-a53"
     options:
-      - "x86/64"
-      - "x86/generic"
-      - "x86/geode"
-      - "armvirt/32"
-      - "armvirt/64"
-      - "malta/be"
-      - "mvebu/cortexa9"
+      - "x86_64"
+      - "i386_pentium4"
+      - "i386_pentium-mmx"
+      - "arm_cortex-a15_neon-vfpv4"
+      - "aarch64_cortex-a53"
+      - "mips_24kc"
+      - "arm_cortex-a9_vfpv3-d16"
   DPKG_ARCH:
    description: "Architecture specification, in debian format"
    value: "arm64"
