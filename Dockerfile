@@ -3,6 +3,11 @@ ARG SDK_IMAGE
 FROM $SDK_IMAGE AS build-stage
 ARG GIT_URL
 ARG PACK_NAME
+
+RUN ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
+RUN ./scripts/feeds update -a
+RUN make defconfig
+
 RUN [ -z "$GIT_URL" ] && echo 'GIT_URL is required' && exit 1 || true
 RUN [ -z "$PACK_NAME" ] && echo 'PACK_NAME is required' && exit 1 || true
 RUN echo "src-git myrepo $GIT_URL" >> feeds.conf.default
@@ -12,7 +17,6 @@ RUN ./scripts/feeds update myrepo
 RUN ./scripts/feeds install $PACK_NAME
 RUN ./scripts/feeds update -i myrepo
 RUN ./scripts/feeds install -a -f $PACK_NAME
-RUN make defconfig
 RUN make package/$PACK_NAME/compile
 RUN make package/index
 
