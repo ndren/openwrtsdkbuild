@@ -59,6 +59,7 @@ variables:
       - "zoobab/openwrtsdk:21.02.0-rc4-bcm27xx-bcm2708"
       - "zoobab/openwrtsdk:21.02.0-rc4-armvirt-64"
       - "zoobab/openwrtsdk:21.02.0-rc4-x86-64"
+      - "openwrt/sdk:armvirt-64-23.05.0-rc1"
   DOCKER_PLATFORM:
     description: "The platform that docker should emulate at the install test step"
     value: "linux/aarch64_cortex-a53"
