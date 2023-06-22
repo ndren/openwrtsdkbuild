@@ -3,7 +3,7 @@ sed -i '/check_signature/s/^/#/g' /etc/opkg.conf
 
 mkdir -p /var/lock/ && touch /var/lock/opkg.lock
 opkg update
-opkg install wget-ssl libstdcpp
+opkg install wget-ssl
 
 opkg print-architecture
 

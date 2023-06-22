@@ -68,7 +68,7 @@ variables:
       - "linux/aarch64_cortex-a53"
   OPENWRT_ROOTFS_TAG:
     description: "The rootfs tag from openwrt: https://github.com/openwrt/docker#rootfs-tags, https://hub.docker.com/r/openwrt/rootfs/tags"
-    value: "aarch64_cortex-a53-SNAPSHOT"
+    value: "aarch64_cortex-a53-23.05.0-rc1"
     options:
       - "x86_64-SNAPSHOT"
       - "i386_pentium4-SNAPSHOT"
@@ -79,6 +79,7 @@ variables:
       - "arm_cortex-a9_vfpv3-d16-SNAPSHOT"
       - "aarch64_cortex-a53-SNAPSHOT"
       - "armvirt-64-SNAPSHOT"
+      - "aarch64_cortex-a53-23.05.0-rc1"
   DPKG_ARCH:
    description: "Architecture specification, in debian format"
    value: "arm64"
