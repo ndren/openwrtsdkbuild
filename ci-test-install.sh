@@ -1,6 +1,7 @@
 sed -i 's/https/http/g' /etc/opkg/distfeeds.conf
 sed -i '/check_signature/s/^/#/g' /etc/opkg.conf
 
+mkdir -p /var/lock/ && touch /var/lock/opkg.lock
 opkg update
 opkg install wget-ssl
 
