@@ -19,8 +19,7 @@ RUN ./scripts/feeds update -i myrepo
 RUN ./scripts/feeds install -a -f $PACK_NAME
 RUN make package/$PACK_NAME/compile
 RUN make package/index
-RUN find
-RUN find /
+RUN pwd
 
 FROM scratch AS export-stage
 COPY --from=build-stage /home/openwrt/sdk/bin /
