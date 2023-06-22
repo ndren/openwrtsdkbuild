@@ -23,26 +23,12 @@ docker-build:
     paths:
       - artifacts/
 test-install:
-  image: debian:latest
-  stage: test-install
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
   script:
-    - dpkg --add-architecture "${DPKG_ARCH}"
-    - apt update
-    - apt install -y curl libarchive-tools binfmt-support qemu-user-static "libc6:${DPKG_ARCH}"
-    - curl -L --fail "https://downloads.openwrt.org/releases/22.03.5/targets/${ARCH}/${SUBARCH}/openwrt-22.03.5-${ARCH}-${SUBARCH}-rootfs.tar.gz" -o rootfs.tar.gz\
-     || curl -L --fail "https://downloads.openwrt.org/releases/22.03.5/targets/${ARCH}/${SUBARCH}/openwrt-22.03.5-${ARCH}-${SUBARCH}-rootfs.cpio.gz" -o rootfs.cpio.gz
-    - bsdtar -xpf rootfs.tar.gz || bsdtar -xpf rootfs.cpio.gz
-    - chroot . /bin/sh -c "sed -i 's/https/http/g' /etc/opkg/distfeeds.conf"
-    - chroot . /bin/sh -c "sed -i '/check_signature/s/^/#/g' /etc/opkg.conf"
-    - chroot . /bin/sh -c "mkdir -p /var/lock/ && touch /var/lock/opkg.lock"
-    - rm -f ./etc/resolv.conf && cp /etc/resolv.conf ./etc/resolv.conf
-    - chroot . /bin/sh -c "opkg update"
-    - chroot . /bin/sh -c "opkg install wget-ssl"
-    - chroot . /bin/sh -c "echo 'src/gz myrepo http://usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}@${UPLOAD_REPO}' >> /etc/opkg/customfeeds.conf"
-    - chroot . /bin/sh -c "opkg update"
-    - chroot . /bin/sh -c "opkg install '${PACK_NAME}'"
-    # Optionally run PACK_NAME
-    - chroot . /bin/sh -c "'${PACK_NAME}'"
+    - docker run --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" "${cat ci-test-install.sh}"
 
 variables:
   PACK_NAME:
