@@ -19,7 +19,6 @@ RUN ./scripts/feeds update myrepo
 RUN ./scripts/feeds install $PACK_NAME
 RUN ./scripts/feeds update -i myrepo
 RUN ./scripts/feeds install -a -f $PACK_NAME
-RUN make defconfig
 RUN make package/$PACK_NAME/compile
 RUN make package/index
 
