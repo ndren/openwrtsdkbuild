@@ -9,7 +9,7 @@ on:
 env:
   GIT_URL: "https://github.com/zoobab/openwrt_helloworld"
   PACK_NAME: "helloworld"
-  SDK_IMAGE: "openwrt/sdk:armvirt-64-openwrt-22.03"
+  SDK_IMAGE: "openwrt/sdk:x86-64-openwrt-23.05"
 
 jobs:
 
