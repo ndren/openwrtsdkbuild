@@ -24,4 +24,4 @@ RUN make package/$PACK_NAME/compile
 RUN make package/index
 
 FROM scratch AS export-stage
-COPY --from=build-stage /builder/bin /
+COPY --from=build-stage /home/openwrt/sdk/bin /
