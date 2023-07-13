@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  GIT_URL: "https://github.com/zoobab/openwrt_helloworld"
+  PACK_NAME: "helloworld"
+  SDK_IMAGE: "openwrt/sdk:armvirt-64-23.05.0-rc1"
+
 jobs:
 
   build:
@@ -15,4 +20,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
+      
+  test:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test the Docker image
+      run: docker run -e PERSONAL_ACCESS_TOKEN -e UPLOAD_REPO -e PACK_NAME --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat ci-test-install.sh)"
