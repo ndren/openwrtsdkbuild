@@ -10,6 +10,11 @@ env:
   GIT_URL: "https://github.com/zoobab/openwrt_helloworld"
   PACK_NAME: "helloworld"
   SDK_IMAGE: "andreien/openwrtsdk:22.03.5-armvirt-64"
+  UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild"
+  DOCKER_PLATFORM: "linux/aarch64_cortex-a53"
+  IPK_NAME: "helloworld_1.0-1_aarch64_cortex-a53.ipk"
+  OPENWRT_ROOTFS_TAG: "aarch64_cortex-a53-23.05.0-rc1"
+  
 
 jobs:
 
@@ -40,4 +45,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test the Docker image
-      run: docker run -e PERSONAL_ACCESS_TOKEN -e UPLOAD_REPO -e PACK_NAME --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat ci-test-install.sh)"
+      run: |
+        docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat test-gh-release.sh)"
