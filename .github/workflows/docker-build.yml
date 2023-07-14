@@ -22,8 +22,8 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
-        find
-        find /
+        pwd
+        find / -name artifacts
       
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
