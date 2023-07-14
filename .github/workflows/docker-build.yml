@@ -11,7 +11,6 @@ env:
   PACK_NAME: "helloworld"
   SDK_IMAGE: "andreien/openwrtsdk:22.03.5-armvirt-64"
   UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild"
-  DOCKER_PLATFORM: "linux/aarch64_cortex-a53"
   IPK_NAME: "helloworld_1.0-1_aarch64_cortex-a53.ipk"
   OPENWRT_ROOTFS_TAG: "aarch64_cortex-a53-23.05.0-rc1"
   
@@ -28,6 +27,12 @@ jobs:
       run: |
         DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
         
+        for SDK_IMAGE_ARCH in "x86-generic" "x86-geode" "x86-64" "aarch64_generic" "malta-be"
+        do
+          DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="andreien/openwrtsdk:22.03.5-$SDK_IMAGE_ARCH" .
+        done
+        
+        find /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/*.ipk
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -48,3 +53,10 @@ jobs:
     - name: Test the Docker image
       run: |
         docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat test-gh-release.sh)"
+        
+        for OPENWRT_ARCH in "x86-generic" "x86-geode" "x86-64" "aarch64_generic" "malta-be"
+        do
+          IPK_NAME="helloworld_1.0-1_$OPENWRT_ARCH.ipk"
+          OPENWRT_ROOTFS_TAG="$OPENWRT_ARCH-openwrt-23.05"
+          docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat test-gh-release.sh)"
+        done
