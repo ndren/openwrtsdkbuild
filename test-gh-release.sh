@@ -7,7 +7,7 @@ opkg install curl
 
 opkg print-architecture
 
-curl "${UPLOAD_REPO}/releases/${IPK_NAME}" -o "${IPK_NAME}"
+curl "${UPLOAD_REPO}/releases/${IPK_NAME}" -Lo "${IPK_NAME}"
 opkg install "${IPK_NAME}"
 
 "${PACK_NAME}"
