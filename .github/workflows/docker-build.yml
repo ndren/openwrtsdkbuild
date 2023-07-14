@@ -44,7 +44,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - uses: docker/setup-qemu-action@v2
     - name: Test the Docker image
       run: |
-        cat test-gh-release.sh
         docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME --platform "${DOCKER_PLATFORM}" "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat test-gh-release.sh)"
