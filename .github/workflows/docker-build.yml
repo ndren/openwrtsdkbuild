@@ -22,9 +22,7 @@ jobs:
     - name: Build the Docker image
       run: |
         DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
-        pwd
-        find / -name artifacts
-      
+        cp /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts .
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
