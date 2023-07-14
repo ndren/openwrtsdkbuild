@@ -20,14 +20,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
+      run: |
+        docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
+        find artifacts
+      
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
         title: "Package release"
         files: |
-            artifacts/**/*.ipk
+            artifacts/packages/*/*/*.ipk
       
   test:
   
