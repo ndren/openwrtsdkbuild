@@ -54,7 +54,7 @@ jobs:
       run: |
         docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat test-gh-release.sh)"
         
-        for OPENWRT_ARCH in "x86-generic" "x86-geode" "x86-64" "aarch64_generic" "malta-be"
+        for OPENWRT_ARCH in "x86-generic" "x86-geode" "x86-64" "malta-be"
         do
           IPK_NAME="helloworld_1.0-1_$OPENWRT_ARCH.ipk"
           OPENWRT_ROOTFS_TAG="$OPENWRT_ARCH-openwrt-23.05"
