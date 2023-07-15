@@ -11,7 +11,7 @@ env:
   PACK_NAME: "helloworld"
   SDK_IMAGE: "andreien/openwrtsdk:22.03.5-armvirt-64"
   UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild"
-  #IPK_PATTERN: 'helloworld_1.0-1_$ARCH.ipk'
+  IPK_PATTERN: 'helloworld_1.0-1_$ARCH.ipk'
   OPENWRT_ROOTFS_TAG: "aarch64_cortex-a53-23.05.0-rc1"
   
 
@@ -27,7 +27,7 @@ jobs:
       run: |
         for ARCH_SPEC in $(sed '/^#/d' architecture-map)
         do
-          SDK_IMAGE=$(echo "$ARCH_SPEC" | cut -d'|' -f1)
+          SDK_IMAGE=$(echo -n "$ARCH_SPEC" | cut -d'|' -f1)
           DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
         done
         
@@ -53,9 +53,8 @@ jobs:
       run: |
         for ARCH_SPEC in $(sed '/^#/d' architecture-map)
         do
-          ROOTFS_IMAGE=$(echo "$ARCH_SPEC" | cut -d'|' -f2)
-          ARCH=$(echo "$ARCH_SPEC" | cut -d'|' -f3)
-          IPK_PATTERN='helloworld_1.0-1_$ARCH.ipk'
+          ROOTFS_IMAGE=$(echo -n "$ARCH_SPEC" | cut -d'|' -f2)
+          ARCH=$(echo -n "$ARCH_SPEC" | cut -d'|' -f3)
           eval "IPK_NAME=$IPK_PATTERN"
           docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "${ROOTFS_IMAGE}" /bin/sh -c "$(cat test-gh-release.sh)"
         done
