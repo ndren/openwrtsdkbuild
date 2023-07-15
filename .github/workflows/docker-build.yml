@@ -39,7 +39,7 @@ jobs:
         automatic_release_tag: "latest"
         title: "Package release"
         files: |
-            /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/*.ipk
+            /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/Packages.gz
             /home/runner/work/Packages.gz
       
   test:
