@@ -11,7 +11,7 @@ env:
   PACK_NAME: "helloworld"
   SDK_IMAGE: "andreien/openwrtsdk:22.03.5-armvirt-64"
   UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild"
-  IPK_PATTERN: 'helloworld_1.0-1_$IPKARCH.ipk'
+  IPK_PATTERN: 'helloworld_1.0-1_$ARCH.ipk'
   OPENWRT_ROOTFS_TAG: "aarch64_cortex-a53-23.05.0-rc1"
   
 
