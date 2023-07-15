@@ -11,7 +11,7 @@ env:
   PACK_NAME: "helloworld"
   SDK_IMAGE: "andreien/openwrtsdk:22.03.5-armvirt-64"
   UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild"
-  IPK_PATTERN: 'helloworld_1.0-1_$ARCH.ipk'
+  IPK_START: "helloworld_1.0-1_"
   OPENWRT_ROOTFS_TAG: "aarch64_cortex-a53-23.05.0-rc1"
   
 
@@ -55,6 +55,6 @@ jobs:
         do
           ROOTFS_IMAGE=$(echo -n "$ARCH_SPEC" | cut -d'|' -f2)
           ARCH=$(echo -n "$ARCH_SPEC" | cut -d'|' -f3)
-          eval "IPK_NAME=$IPK_PATTERN"
+          IPK_NAME="$IPK_START$ARCH.ipk"
           docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "${ROOTFS_IMAGE}" /bin/sh -c "$(cat test-gh-release.sh)"
         done
