@@ -1,1 +1,8 @@
-
+##SDK_IMAGE|ROOTFS_IMAGE|IPK_ARCH
+##Comment out any architectures to be excluded from the build. Uncomment any architectures you want to include.
+##Feel free to update any SDK or rootfs images.
+andreien/openwrtsdk:22.03.5-armvirt-32|openwrt/rootfs:arm_cortex-a15_neon-vfpv4-openwrt-23.05|arm_cortex-a15_neon-vfpv4
+andreien/openwrtsdk:22.03.5-armvirt-64|openwrt/rootfs:aarch64_cortex-a53-23.05.0-rc1|aarch64_cortex-a53
+andreien/openwrtsdk:22.03.5-x86-generic|openwrt/rootfs:x86-generic-openwrt-23.05|i386_pentium4
+andreien/openwrtsdk:22.03.5-x86-geode|openwrt/rootfs:x86-geode-openwrt-23.05|i386_pentium-mmx
+andreien/openwrtsdk:22.03.5-x86-64|openwrt/rootfs:x86-64-openwrt-23.05|x86_64
