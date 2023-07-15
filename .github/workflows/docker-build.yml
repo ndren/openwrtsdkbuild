@@ -55,6 +55,6 @@ jobs:
         do
           OPENWRT_ROOTFS_TAG=$(echo "$ARCH_SPEC" | cut -d'|' -f2)
           ARCH=$(echo "$ARCH_SPEC" | cut -d'|' -f3)
-          IPK_NAME=$(eval "$IPK_PATTERN")
+          eval "IPK_NAME=$IPK_PATTERN"
           docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "openwrt/rootfs:${OPENWRT_ROOTFS_TAG}" /bin/sh -c "$(cat test-gh-release.sh)"
         done
