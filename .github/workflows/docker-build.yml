@@ -27,7 +27,7 @@ jobs:
       run: |
         DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="$SDK_IMAGE" .
         
-        for SDK_IMAGE_ARCH in "x86-generic" "x86-geode" "x86-64" "malta-be"
+        for SDK_IMAGE_ARCH in "armvirt-32" "x86-generic" "x86-geode" "x86-64" "malta-be"
         do
           DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE="andreien/openwrtsdk:22.03.5-$SDK_IMAGE_ARCH" .
         done
