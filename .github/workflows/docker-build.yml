@@ -32,14 +32,14 @@ jobs:
         done
         
         find /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/*.ipk
-        zcat /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/*.ipk | gzip >/home/runner/work/Packages.gz
+        zcat /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/Packages.gz | gzip >/home/runner/work/Packages.gz
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
         title: "Package release"
         files: |
-            /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/Packages.gz
+            /home/runner/work/openwrtsdkbuild/openwrtsdkbuild/artifacts/packages/*/*/*.ipk
             /home/runner/work/Packages.gz
       
   test:
