@@ -8,6 +8,7 @@ ENV TERM=xterm
 
 RUN ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "Local build key"
 RUN ./scripts/feeds update -a
+RUN make download
 RUN make defconfig
 
 RUN [ -z "$GIT_URL" ] && echo 'GIT_URL is required' && exit 1 || true
