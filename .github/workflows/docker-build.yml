@@ -104,7 +104,7 @@ jobs:
           docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "${ROOTFS_IMAGE}" /bin/sh -c "$(cat test-gh-release.sh)"
         done
 
-        if ${{ inputs.SDK_IMAGE }}; then
+        if [ ${{ inputs.SDK_IMAGE }} ]; then
         IPK_NAME=${{ inputs.IPK_NAME }}
         PACK_NAME=${{ inputs.PACK_NAME }}
         ROOTFS_IMAGE=${{ inputs.ROOTFS_IMAGE }}
