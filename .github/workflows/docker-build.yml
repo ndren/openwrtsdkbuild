@@ -5,7 +5,41 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
+  workflow_dispatch:
+    inputs:
+      SDK_IMAGE:
+        type: choice
+        description: SDK image (must match architecture)
+        options:
+        - andreien/openwrtsdk:22.03.5-armvirt-32
+        - andreien/openwrtsdk:22.03.5-armvirt-64
+        - andreien/openwrtsdk:22.03.5-x86-generic
+        - andreien/openwrtsdk:22.03.5-x86-geode
+        - andreien/openwrtsdk:22.03.5-x86-64
+      ROOTFS_IMAGE:
+        type: choice
+        description: Rootfs image (must match architecture)
+        options:
+        - openwrt/rootfs:arm_cortex-a15_neon-vfpv4-openwrt-23.05
+        - openwrt/rootfs:aarch64_cortex-a53-23.05.0-rc1
+        - openwrt/rootfs:x86-generic-openwrt-23.05
+        - openwrt/rootfs:x86-geode-openwrt-23.05
+        - openwrt/rootfs:x86-64-openwrt-23.05
+      ARCH:
+        type: choice
+        description: Architecture
+        options:
+        - arm_cortex-a15_neon-vfpv4
+        - aarch64_cortex-a53
+        - i386_pentium4
+        - i386_pentium-mmx
+        - x86_64
+      IPK_NAME:
+        type: string
+        description: The name of the IPK file (example, helloworld_1.0-1_aarch64_cortex-a53.ipk)
+      PACK_NAME:
+        type: string
+        description: The name of the package (example, helloworld)
 env:
   GIT_URL: "https://github.com/zoobab/openwrt_helloworld"
   PACK_NAME: "helloworld"
@@ -25,6 +59,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
+        DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE=${{ inputs.SDK_IMAGE }} .
+        
         sed '/^#/d' architecture-map | while read -r ARCH_SPEC
         do
           SDK_IMAGE=$(echo -n "$ARCH_SPEC" | cut -d'|' -f1)
@@ -60,3 +96,8 @@ jobs:
           export IPK_NAME="$IPK_START$ARCH.ipk"
           docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "${ROOTFS_IMAGE}" /bin/sh -c "$(cat test-gh-release.sh)"
         done
+        IPK_NAME=${{ inputs.IPK_NAME }}
+        PACK_NAME=${{ inputs.PACK_NAME }}
+        ROOTFS_IMAGE=${{ inputs.ROOTFS_IMAGE }}
+        docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "${ROOTFS_IMAGE}" /bin/sh -c "$(cat test-gh-release.sh)"
+
