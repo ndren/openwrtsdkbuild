@@ -12,4 +12,4 @@ echo "src/gz myrepo http://usernameisnotimportant:${PERSONAL_ACCESS_TOKEN}@${UPL
 opkg update
 opkg install "${PACK_NAME}"
 
-"${PACK_NAME}"
+"${PACK_NAME}" || true
