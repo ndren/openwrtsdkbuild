@@ -64,7 +64,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        if [ ${{ inputs.SDK_IMAGE }} ] then
+        if [ ${{ inputs.SDK_IMAGE }} ]; then
         DOCKER_BUILDKIT=1 docker build --output type=local,dest=artifacts --build-arg GIT_URL="$GIT_URL" --build-arg PACK_NAME="$PACK_NAME" --build-arg SDK_IMAGE=${{ inputs.SDK_IMAGE }} .
         fi
         
@@ -103,8 +103,8 @@ jobs:
           export IPK_NAME="$IPK_START$ARCH.ipk"
           docker run -e UPLOAD_REPO -e IPK_NAME -e PACK_NAME "${ROOTFS_IMAGE}" /bin/sh -c "$(cat test-gh-release.sh)"
         done
-      
-        if ${{ inputs.SDK_IMAGE }} then
+
+        if ${{ inputs.SDK_IMAGE }}; then
         IPK_NAME=${{ inputs.IPK_NAME }}
         PACK_NAME=${{ inputs.PACK_NAME }}
         ROOTFS_IMAGE=${{ inputs.ROOTFS_IMAGE }}
