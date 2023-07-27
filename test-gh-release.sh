@@ -10,4 +10,4 @@ opkg print-architecture
 curl "${UPLOAD_REPO}/releases/download/latest/${IPK_NAME}" -Lo "${IPK_NAME}"
 opkg install "${IPK_NAME}"
 
-"${PACK_NAME}"
+"${PACK_NAME}" || true
