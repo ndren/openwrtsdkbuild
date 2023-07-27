@@ -52,6 +52,7 @@ env:
   UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild"
   IPK_START: "helloworld_1.0-1_"
   OPENWRT_ROOTFS_TAG: "aarch64_cortex-a53-23.05.0-rc1"
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
   
 
 jobs:
