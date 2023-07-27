@@ -10,6 +10,7 @@ on:
       SDK_IMAGE:
         type: choice
         description: SDK image (must match architecture)
+        required: true
         options:
         - andreien/openwrtsdk:22.03.5-armvirt-32
         - andreien/openwrtsdk:22.03.5-armvirt-64
@@ -19,6 +20,7 @@ on:
       ROOTFS_IMAGE:
         type: choice
         description: Rootfs image (must match architecture)
+        required: true
         options:
         - openwrt/rootfs:arm_cortex-a15_neon-vfpv4-openwrt-23.05
         - openwrt/rootfs:aarch64_cortex-a53-23.05.0-rc1
@@ -28,6 +30,7 @@ on:
       ARCH:
         type: choice
         description: Architecture
+        required: true
         options:
         - arm_cortex-a15_neon-vfpv4
         - aarch64_cortex-a53
@@ -36,9 +39,11 @@ on:
         - x86_64
       IPK_NAME:
         type: string
+        required: true
         description: The name of the IPK file (example, helloworld_1.0-1_aarch64_cortex-a53.ipk)
       PACK_NAME:
         type: string
+        required: true
         description: The name of the package (example, helloworld)
 env:
   GIT_URL: "https://github.com/zoobab/openwrt_helloworld"
