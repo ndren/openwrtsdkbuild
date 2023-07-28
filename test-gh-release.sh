@@ -7,7 +7,7 @@ opkg install wget-ssl
 
 opkg print-architecture
 
-# Defaults to https://github.com/ndren/openwrtsdkbuild/releases/tag/latest
+# Defaults to https://github.com/ndren/openwrtsdkbuild/releases/download/latest
 echo "src/gz myrepo ${UPLOAD_REPO}" >> /etc/opkg/customfeeds.conf
 
 opkg install "${PACK_NAME}"
