@@ -3,11 +3,12 @@ sed -i '/check_signature/s/^/#/g' /etc/opkg.conf
 
 mkdir -p /var/lock/ && touch /var/lock/opkg.lock
 opkg update
-opkg install curl
+opkg install wget-ssl
 
 opkg print-architecture
 
-curl "${UPLOAD_REPO}/releases/download/latest/${IPK_NAME}" -Lo "${IPK_NAME}"
-opkg install "${IPK_NAME}"
+# Defaults to https://github.com/ndren/openwrtsdkbuild/releases/tag/latest
+echo "src/gz myrepo ${UPLOAD_REPO}" >> /etc/opkg/customfeeds.conf
 
+opkg install "${PACK_NAME}"
 "${PACK_NAME}" || true
