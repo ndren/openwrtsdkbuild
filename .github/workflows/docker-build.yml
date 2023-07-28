@@ -49,7 +49,7 @@ env:
   GIT_URL: "https://github.com/zoobab/openwrt_helloworld"
   PACK_NAME: "helloworld"
   SDK_IMAGE: "andreien/openwrtsdk:22.03.5-armvirt-64"
-  UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild/releases/tag/latest"
+  UPLOAD_REPO: "https://github.com/ndren/openwrtsdkbuild/releases/download/latest"
   IPK_START: "helloworld_1.0-1_"
   OPENWRT_ROOTFS_TAG: "aarch64_cortex-a53-23.05.0-rc1"
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
